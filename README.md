@@ -7,7 +7,7 @@ I am watching the Pluralsight course, Building Applications with React and Flux,
 
 After cloning the repo, open a console at the root path of the repo and run
 
-`npm install
+>npm install
 
 This will install the required npm packages.
 
@@ -15,9 +15,17 @@ This will install the required npm packages.
 
 To run the project, open a console at the root path of the repo and run
 
-`gulp
+>gulp
 
 This will kick off the default gulp task to run all the magic and open the index.html page in a browser.
+
+##0.0.2
+
+- Add home page component
+- Add about page component
+- Add basic routing
+- Add common header component
+- Add image for logo and favicon
 
 ##0.0.1
 
