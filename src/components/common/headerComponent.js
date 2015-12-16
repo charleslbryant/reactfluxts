@@ -11,6 +11,7 @@ var Header = React.createClass({
                     </a>
                     <ul className="nav navbar-nav">
                         <li><a href="/">Home</a></li>
+                        <li><a href="/#pipelines">Pipelines</a></li>
                         <li><a href="/#about">About</a></li>
                     </ul>
                 </div>

@@ -19,6 +19,13 @@ To run the project, open a console at the root path of the repo and run
 
 This will kick off the default gulp task to run all the magic and open the index.html page in a browser.
 
+#History
+
+##0.0.3
+
+- Add pipelines page component
+- Add pipeline mock API
+
 ##0.0.2
 
 - Add home page component
