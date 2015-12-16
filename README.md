@@ -21,6 +21,11 @@ This will kick off the default gulp task to run all the magic and open the index
 
 #History
 
+##0.0.4
+
+- Change routing using React-Routing with browser history (supports IE10+ class browsers).
+- Not a dependency, but installed [React-DevTools for Chrome](https://fb.me/react-devtools) to make in browser development better.
+
 ##0.0.3
 
 - Add pipelines page component
