@@ -13,6 +13,8 @@ var routes = (
         <DefaultRoute handler={require('./components/homeComponent')} />
 
         <Route name='pipelines' handler={require('./components/pipelines/pipelineComponent')} />
+        <Route name='addPipeline' handler={require('./components/pipelines/managePipelineComponent')} />
+        <Route name='managePipeline' path='pipeline/:id' handler={require('./components/pipelines/managePipelineComponent')} />
         <Route name='about' handler={require('./components/about/aboutComponent')} />
 
         <Redirect from='about/*' to='about' />

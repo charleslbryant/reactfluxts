@@ -1,4 +1,6 @@
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var PipelineList = React.createClass({
     propTypes: {
@@ -10,7 +12,7 @@ var PipelineList = React.createClass({
         var createPipelineRow = function(pipeline){
             return (
                 <tr key={pipeline.id}>
-                    <td><a href={'/#pipelines/' + pipeline.id}>{pipeline.id}</a></td>
+                    <td><Link to="managePipeline" params={{id: pipeline.id}}>{pipeline.id}</Link></td>
                     <td>{pipeline.name}</td>
                 </tr>
             );

@@ -1,6 +1,8 @@
 var React = require('react');
 var PipelineApi = require('../../api/pipelineApi');
 var PipelineList = require('./pipelineList');
+var Router = require('react-router');
+var Link = require('react-router').Link;
 
 var PipelineComponent = React.createClass({
     getInitialState: function(){
@@ -21,6 +23,7 @@ var PipelineComponent = React.createClass({
         return(
             <div>
                 <h1>Pipelines</h1>
+                <Link to="addPipeline" className="btn btn-default">Add Pipeline</Link>
                 <PipelineList pipelines = {this.state.pipelines} />
             </div>
         );

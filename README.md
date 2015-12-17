@@ -3,6 +3,11 @@
 
 I am watching the Pluralsight course, Building Applications with React and Flux, by Cory House. The goal is to learn the basics of React and Flux then throw Typescript in the mix.
 
+##Requirements
+
+- [npm](https://docs.npmjs.com/getting-started/installing-node) package manager (Node 5.2.0 used in development)
+- IE 10+ or similar modern browser that supports the History API
+
 ##Install
 
 After cloning the repo, open a console at the root path of the repo and run
@@ -20,6 +25,12 @@ To run the project, open a console at the root path of the repo and run
 This will kick off the default gulp task to run all the magic and open the index.html page in a browser.
 
 #History
+
+##0.0.5
+
+- Changed manage pipeline component and form to allow saving and updating of pipeline to include validation.
+- Changed pipeline list component to add link routing to enable updating pipelines.
+- Added toastr for UI messaging.
 
 ##0.0.4
 
