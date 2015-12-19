@@ -1,7 +1,8 @@
 var React = require('react');
 var Router = require('react-router');
 var PipelineForm = require('./pipelineForm');
-var PipelineApi = require('../../api/pipelineApi');
+var PipelineActions = require('../../actions/pipelineActions');
+var PipelineStore = require('../../stores/pipelineStore');
 var Toastr = require('toastr');
 
 var ManagePipelineComponent = React.createClass({
@@ -37,7 +38,7 @@ var ManagePipelineComponent = React.createClass({
         var pipelineId = this.props.params.id;
 
         if(pipelineId){
-            this.setState({pipeline: PipelineApi.getPipelineById(pipelineId)});
+            this.setState({pipeline: PipelineStore.getPipelineById(pipelineId)});
         }
     },
 
@@ -61,7 +62,12 @@ var ManagePipelineComponent = React.createClass({
             return;
         }
 
-        PipelineApi.savePipeline(this.state.pipeline);
+        if(this.state.pipeline.id){
+            PipelineActions.updatePipeline(this.state.pipeline);
+        } else{
+            PipelineActions.createPipeline(this.state.pipeline);
+        }
+
         this.setState({dirty: false});
         Toastr.success('Pipeline saved.');
         this.transitionTo('pipelines');

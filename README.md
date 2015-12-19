@@ -26,6 +26,11 @@ This will kick off the default gulp task to run all the magic and open the index
 
 #History
 
+##0.0.6
+
+- Implementing Flux to manage unidirectional data flow.
+- Add delete pipeline functionality.
+
 ##0.0.5
 
 - Changed manage pipeline component and form to allow saving and updating of pipeline to include validation.

@@ -1,5 +1,6 @@
 var React = require('react');
-var PipelineApi = require('../../api/pipelineApi');
+var PipelineActions = require('../../actions/pipelineActions');
+var PipelineStore = require('../../stores/pipelineStore');
 var PipelineList = require('./pipelineList');
 var Router = require('react-router');
 var Link = require('react-router').Link;
@@ -7,14 +8,20 @@ var Link = require('react-router').Link;
 var PipelineComponent = React.createClass({
     getInitialState: function(){
         return {
-            pipelines: []
+            pipelines: PipelineStore.getAllPipelines()
         };
     },
 
-    componentDidMount: function(){
-        if(this.isMounted()){  
-        this.setState({pipelines: PipelineApi.getAllPipelines() });
-        }
+    componentWillMount: function(){
+      PipelineStore.addChangeListner(this._onChange);
+    },
+
+    componentWillUnmount: function(){
+      PipelineStore.removeChangeListner(this._onChange);
+    },
+
+    _onChange: function(){
+      this.setState({pipelines: PipelineStore.getAllPipelines() });
     },
 
     render: function () {
