@@ -26,5 +26,9 @@
     "toaster": "^0.1.2",
     "toastr": "^2.1.2",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp-typescript": "^2.10.0"
   }
 }

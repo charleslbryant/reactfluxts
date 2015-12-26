@@ -8,6 +8,9 @@ var reactify = require('reactify');
 var source = require('vinyl-source-stream');
 var concat = require('gulp-concat');
 var eslint = require('gulp-eslint');
+var tsc = require('gulp-typescript');
+var tsProject = tsc.createProject('tsconfig.json');
+var del = require('del');
 
 var config = {
     port: 9005,
@@ -21,12 +24,15 @@ var config = {
         ],
         img: './src/images/*',
         js: './src/**/*.js',
+        tsx: './src/**/*.tsx',
+        tsf: './src/**/*.ts',
         dist: './dist',
+        tsjsOut: './src',
         mainJs: './src/main.js'
     }
 }
 
-gulp.task('connect', function(){
+gulp.task('connect', ['js'], function(){
     connect.server({
         root: ['dist'],
         port: config.port,
@@ -41,18 +47,24 @@ gulp.task('open', ['connect'], function(){
 });
 
 gulp.task('html', function(){
+    del(config.paths.dist + '/**/*.html');
+
     gulp.src(config.paths.html)
         .pipe(gulp.dest(config.paths.dist))
         .pipe(connect.reload());
 });
 
 gulp.task('css', function(){
+    del(config.paths.dist + '/css/**/*');
+
     gulp.src(config.paths.css)
         .pipe(concat('bundle.css'))
         .pipe(gulp.dest(config.paths.dist + '/css'));
 });
 
 gulp.task('img', function(){
+    del(config.paths.dist + '/images/**/*');
+
     gulp.src(config.paths.img)
         .pipe(gulp.dest(config.paths.dist + '/images'))
         .pipe(connect.reload());
@@ -61,8 +73,21 @@ gulp.task('img', function(){
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task('js', function(){
-    browserify(config.paths.mainJs)
+gulp.task('typescript', function(){
+    var tsResult = gulp
+        .src([config.paths.tsx, config.paths.tsf])
+        .pipe(tsc({
+          jsx: 'react'
+        }))
+
+    return tsResult
+        .pipe(gulp.dest(config.paths.tsjsOut));
+})
+
+gulp.task('js', ['lint'], function(){
+    //del(config.paths.dist + '/scripts/**/*');
+
+    return browserify(config.paths.mainJs)
         .transform(reactify)
         .bundle()
         .on('error', console.error.bind(console))
@@ -71,7 +96,7 @@ gulp.task('js', function(){
         .pipe(connect.reload());
 });
 
-gulp.task('lint', function(){
+gulp.task('lint', ['typescript'],function(){
     return gulp
         .src(config.paths.js)
         .pipe(eslint())
@@ -81,7 +106,8 @@ gulp.task('lint', function(){
 gulp.task('watch', function(){
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.img, ['img']);
-    gulp.watch(config.paths.js, ['lint', 'js']);
+    gulp.watch(config.paths.css, ['css']);
+    gulp.watch([config.paths.js, config.paths.tsx, config.paths.tsf], ['js']);
 });
 
-gulp.task('default', ['html', 'css', 'img', 'js', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'css', 'img', 'js', 'open', 'watch']);

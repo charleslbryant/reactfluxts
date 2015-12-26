@@ -15,7 +15,7 @@ var PipelineStore = Assign({}, EventEmitter.prototype, {
     },
 
     removeChangeListner: function(callback){
-        this.removeListner(CHANGE_EVENT, callback);
+        this.removeListener(CHANGE_EVENT, callback);
     },
 
     emitChange: function() {
