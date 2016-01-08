@@ -36,6 +36,4 @@ Then I initialize tsd
 
 Install the React TypeScript typings.
 
-`tsd install react --save`
-
-I also manually installed the global typing for react, https://raw.githubusercontent.com/borisyankov/DefinitelyTyped/master/react/react-global.d.ts. This adds react as a global.
+`tsd install react-global --save`
