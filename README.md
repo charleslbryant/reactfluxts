@@ -1,7 +1,7 @@
 # reactfluxts
 **Playing with React Flux and Typescript**
 
-I am watched the Pluralsight course, Building Applications with React and Flux, by Cory House. The goal was to learn the basics of React and Flux then throw Typescript in the mix.
+I watched the Pluralsight course, Building Applications with React and Flux, by Cory House and decided to code along with the course. The goal was to learn the basics of React and Flux then throw Typescript in the mix so that I can build a simple continuous delivery application with React.
 
 ## Requirements
 
